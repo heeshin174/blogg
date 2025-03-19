@@ -15,7 +15,9 @@ class BlogApiRestAssuredTest extends ApiTest {
 
     @Test
     void 아티클추가() {
-        final AddArticleRequest request = 아티클추가요청_생성();
+        String title = "새 글";
+        String content = "새 글입니다. 잘 부탁해요";
+        final AddArticleRequest request = new AddArticleRequest(title, content);
 
         // API 요청
         final ExtractableResponse<Response> response = RestAssured.given().log().all()
@@ -25,9 +27,12 @@ class BlogApiRestAssuredTest extends ApiTest {
         assertThat(response.statusCode()).isEqualTo(HttpStatus.CREATED.value());
     }
 
+
     @Test
     void 아티클전체조회() {
-        final AddArticleRequest request = 아티클추가요청_생성();
+        String title = "새 글";
+        String content = "새 글입니다. 잘 부탁해요";
+        final AddArticleRequest request = new AddArticleRequest(title, content);
         RestAssured.given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(request).when().post("/api/articles")
@@ -36,13 +41,7 @@ class BlogApiRestAssuredTest extends ApiTest {
         // API 요청
         final ExtractableResponse<Response> response = RestAssured.given().log().all()
                 .when().get("/api/articles")
-                .then().log().all().extract();
+                .then().log().all().extract();;
         assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
-    }
-
-    public static AddArticleRequest 아티클추가요청_생성() {
-        String title = "새 글";
-        String content = "새 글입니다. 잘 부탁해요";
-        return new AddArticleRequest(title, content);
     }
 }
