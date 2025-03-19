@@ -42,7 +42,7 @@ public class Article {
 
     @CreatedDate // Entity 생성 시간
     @Column(name = "created_at")
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate // Entity 수정 시간
     @Column(name = "updated_at")
