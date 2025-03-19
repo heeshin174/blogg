@@ -29,11 +29,18 @@ public class BlogApiController {
         return ResponseEntity.ok().body(articles);
     }
 
-    @GetMapping("/api/articles/{productId}")
-    public ResponseEntity<GetArticleResponse> findArticle(@PathVariable final Long productId) {
-        final Article article = blogService.findById(productId);
+    @GetMapping("/api/articles/{articleId}")
+    public ResponseEntity<GetArticleResponse> findArticle(@PathVariable final Long articleId) {
+        final Article article = blogService.findById(articleId);
         final GetArticleResponse response = new GetArticleResponse(article);
         return ResponseEntity.ok().body(response);
     }
+
+    @DeleteMapping("/api/articles/{articleId}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable final Long articleId) {
+        blogService.delete(articleId);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
