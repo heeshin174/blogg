@@ -7,10 +7,7 @@ import com.example.demo.service.BlogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +28,12 @@ public class BlogApiController {
                 .stream().map(GetArticleResponse::new).toList();
         return ResponseEntity.ok().body(articles);
     }
+
+    @GetMapping("/api/articles/{productId}")
+    public ResponseEntity<GetArticleResponse> findArticle(@PathVariable final Long productId) {
+        final Article article = blogService.findById(productId);
+        final GetArticleResponse response = new GetArticleResponse(article);
+        return ResponseEntity.ok().body(response);
+    }
+
 }
