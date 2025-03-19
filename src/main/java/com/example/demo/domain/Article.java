@@ -24,6 +24,11 @@ public class Article {
     // 빌더 패턴 생성자
     @Builder
     public Article(String title, String content) {
+
+        this.title = title;
+        this.content = content;
+    }
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
