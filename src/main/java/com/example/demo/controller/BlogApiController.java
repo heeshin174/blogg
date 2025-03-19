@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController // HTTP Response Body에 객체 데이터를 JSON 형식으로 반환
 @RequiredArgsConstructor
-public class BlogController {
+public class BlogApiController {
     private final BlogService blogService;
 
     @PostMapping("/api/articles")
